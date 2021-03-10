@@ -21,7 +21,7 @@ function setup() {
 	h2.style("color", "#787878");
  	h2.style("padding", "4px");
  	h2.style("text-align", "center");
- 	h2.position(280, 680);
+ 	h2.position(window.innerWidth/2 - 70, 700);
 
 	let canvas = createCanvas(600,600);
 
