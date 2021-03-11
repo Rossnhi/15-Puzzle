@@ -4,10 +4,5 @@ html, body {
 }
 canvas {
   display: block;
-  position: absolute;
-  left: 50%;
-  margin-left: -300px;
-  top: 50%;
-  margin-top: -300px;
-
+  margin: 0 auto;
 }
