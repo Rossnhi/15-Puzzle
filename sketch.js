@@ -15,15 +15,17 @@ function setup() {
  	h1.style("padding", "4px");
  	h1.style("text-align", "center");
 
+ 	createCanvas(600,600);
 
 	h2 = createElement("h1", "Time : " + time);
 	h2.style("font-size", "25pt");
 	h2.style("color", "#787878");
  	h2.style("padding", "4px");
  	h2.style("text-align", "center");
- 	h2.position(window.innerWidth/2 - 70, 700);
+ 	
+ 	
 
-	let canvas = createCanvas(600,600);
+	
 
 	scale = (600 - gap)/numSquare;
 	for (let i = 0; i < numSquare; i++) {
