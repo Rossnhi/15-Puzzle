@@ -41,7 +41,7 @@ function setup() {
 }
 
 function draw() {
-	frameRate(25);
+	frameRate(60);
 	if (run == true){
 		clear()
 		drawBoard();
