@@ -1,7 +1,7 @@
 let board;
 let winBoard = [];
 let scale;
-let gap = 5;
+let gap = 10;
 let numSquare = 4;
 let run;
 let time = 0;
@@ -10,8 +10,7 @@ let h2;
 function setup() {
 	let h1 = createElement("h1", "15 Puzzle");
 	h1.style("font-size", "32pt");
-	h1.style("color", "#76dde6");
-	h1.style("background-color", "Grey");
+	h1.style("color", "#787878");
  	h1.style("padding", "4px");
  	h1.style("text-align", "center");
 
@@ -22,12 +21,8 @@ function setup() {
 	h2.style("color", "#787878");
  	h2.style("padding", "4px");
  	h2.style("text-align", "center");
- 	
- 	
-
-	
-
-	scale = (600 - gap)/numSquare;
+ 
+	scale = (width - (gap * (numSquare - 1)))/numSquare;
 	for (let i = 0; i < numSquare; i++) {
 		let row = []
 		for (let j = 0; j < numSquare; j++) {
@@ -46,8 +41,9 @@ function setup() {
 }
 
 function draw() {
+	frameRate(25);
 	if (run == true){
-		background(150)
+		clear()
 		drawBoard();
 
 		time = int(millis()/ 1000) - startTime;
@@ -56,7 +52,7 @@ function draw() {
 	}
 	if (JSON.stringify(board) == JSON.stringify(winBoard) && run == true){
 		run = false;
-		background(150, 50);
+		background(255, 50);
 		noStroke();
 		fill(120);
 		textFont('Georgia', 85);
@@ -104,20 +100,30 @@ stacked right to left in x direction, hence when using i an j in
 co-ordinates, use j for x, and i for y.
 */
 function drawBoard() {
-	
+	let sqX, sqY;
 	for (let i = 0; i < numSquare; i++){
 		for (let j = 0; j < numSquare; j++){
 			let square = board[i][j];
 			if (square != 0) {
-				strokeWeight(gap);
-				stroke(150);
-				fill(118, 220, 230);
-				rect((gap/2) + (j * scale), (gap/2) + (i * scale), scale, scale);
+				if (j == 0) {
+					sqX = j * scale;
+				}
+				else {
+					sqX = (gap * j) + (j * scale);
+				}
+				if ( i == 0){
+					sqY = i * scale;
+				}
+				else {
+					sqY = (gap + scale) * i;
+				}
 				noStroke();
+				fill(255,255,255,75);
+				rect(sqX, sqY, scale, scale, 10);
 				fill(150);
 				textAlign(CENTER, CENTER);
 				textFont('Georgia', 65);
-				text(square, (gap/2) + (j * scale) + 8, i * scale, scale, scale);
+				text(square, sqX + 8, sqY, scale, scale);
 			}
 		}
 	}
@@ -148,7 +154,7 @@ function left(){
 		for (let j = 0; j < numSquare; j++) {
 			if ( board[i][j] == 0) {
 				flag = 0;
-				if ( j < 3) {
+				if ( j < numSquare - 1) {
 					[board[i][j], board[i][j+1]] = [board[i][j+1], board[i][j]];
 					break;
 				}
@@ -184,7 +190,7 @@ function up(){
 		for (let j = 0; j < numSquare; j++) {
 			if ( board[i][j] == 0) {
 				flag = 0;
-				if ( i < 3) {
+				if ( i < numSquare - 1) {
 					[board[i][j], board[i+1][j]] = [board[i+1][j], board[i][j]];
 					break;
 				}
