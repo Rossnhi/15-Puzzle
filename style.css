@@ -5,7 +5,6 @@ html, body {
 }
 body {
   background: linear-gradient(45deg, #eecc99, #dddd88);
-  background-color: green;
   height: 100%;
 }
 
