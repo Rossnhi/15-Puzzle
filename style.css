@@ -1,9 +1,13 @@
 html, body {
   margin: 0;
   padding: 0;
+  zoom: 100%;
+  background: linear-gradient(45deg, #eecc99, #dddd88);
+  height: 98%;
 }
+
+
 canvas {
   display: block;
   margin: 0 auto;
-  zoom: 100%;
 }
